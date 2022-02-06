@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/first_start_Fragment">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.renovated_fruit_shop.Fragments.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_detail_Fragment"
+            app:destination="@id/detail_Fragment" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_Favourites2"
+            app:destination="@id/nav_Favourites" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.example.renovated_fruit_shop.Fragments.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.example.renovated_fruit_shop.Fragments.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_Favourites"
+        android:name="com.example.renovated_fruit_shop.Fragments.ui.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_nav_Favourites_to_detail_Fragment"
+            app:destination="@id/detail_Fragment" />
+        <argument
+            android:name="data"
+            app:argType="com.example.renovated_fruit_shop.DataClass.FruitsData" />
+    </fragment>
+    <fragment
+        android:id="@+id/first_start_Fragment"
+        android:name="com.example.renovated_fruit_shop.Fragments.ui.Slash_Fragments.first_start_Fragment"
+        android:label="fragment_first_start_"
+        tools:layout="@layout/fragment_first_start_" >
+        <action
+            android:id="@+id/action_first_start_Fragment_to_splash_1_Fragment"
+            app:destination="@id/splash_1_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splash_1_Fragment"
+        android:name="com.example.renovated_fruit_shop.Fragments.ui.Slash_Fragments.splash_1_Fragment"
+        android:label="fragment_splash_1_"
+        tools:layout="@layout/fragment_splash_1_" >
+        <action
+            android:id="@+id/action_splash_1_Fragment_to_splash_2_Fragment"
+            app:destination="@id/splash_2_Fragment" />
+        <action
+            android:id="@+id/action_splash_1_Fragment_to_sign_in_Fragment"
+            app:destination="@id/sign_in_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splash_3_Fragment"
+        android:name="com.example.renovated_fruit_shop.Fragments.ui.Slash_Fragments.splash_3_Fragment"
+        android:label="fragment_splash_3_"
+        tools:layout="@layout/fragment_splash_3_" >
+        <action
+            android:id="@+id/action_splash_3_Fragment_to_sign_in_Fragment"
+            app:destination="@id/sign_in_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splash_2_Fragment"
+        android:name="com.example.renovated_fruit_shop.Fragments.ui.Slash_Fragments.splash_2_Fragment"
+        android:label="fragment_splash_2_"
+        tools:layout="@layout/fragment_splash_2_" >
+        <action
+            android:id="@+id/action_splash_2_Fragment_to_splash_3_Fragment"
+            app:destination="@id/splash_3_Fragment" />
+        <action
+            android:id="@+id/action_splash_2_Fragment_to_sign_in_Fragment"
+            app:destination="@id/sign_in_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sign_in_Fragment"
+        android:name="com.example.renovated_fruit_shop.Fragments.ui.sig_in_Fragments.Sign_in_Fragment"
+        android:label="fragment_sign_in_"
+        tools:layout="@layout/fragment_sign_in_" >
+        <action
+            android:id="@+id/action_sign_in_Fragment_to_nav_home"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_sign_in_Fragment_to_sign_up_Fragment"
+            app:destination="@id/sign_up_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sign_up_Fragment"
+        android:name="com.example.renovated_fruit_shop.Fragments.ui.sig_in_Fragments.Sign_up_Fragment"
+        android:label="fragment_sign_up_"
+        tools:layout="@layout/fragment_sign_up_" >
+        <action
+            android:id="@+id/action_sign_up_Fragment_to_sign_in_Fragment"
+            app:destination="@id/sign_in_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detail_Fragment"
+        android:name="com.example.renovated_fruit_shop.Fragments.ui.Detail_Fragment"
+        android:label="fragment_detail_"
+        tools:layout="@layout/fragment_detail_" >
+        <argument
+            android:name="data"
+            app:argType="com.example.renovated_fruit_shop.DataClass.FruitsData" />
+        <action
+            android:id="@+id/action_detail_Fragment_to_nav_home"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_detail_Fragment_to_nav_Favourites"
+            app:destination="@id/nav_Favourites" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.renovated_fruit_shop.MainActivity"
+        android:label="app_bar_main"
+        tools:layout="@layout/app_bar_main" />
+</navigation>
