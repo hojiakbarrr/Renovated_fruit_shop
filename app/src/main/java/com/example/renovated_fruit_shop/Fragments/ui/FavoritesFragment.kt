@@ -45,6 +45,9 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
 
     }
 
+    val list: ArrayList<FruitsData> = ArrayList()
+    var gg = ListUsers.allUsers.userId
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -52,87 +55,116 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
 
         binding = FragmentFavoritesBinding.inflate(layoutInflater, container, false)
         fruitList.clear()
+        allfruits.clear()
 
 
 //        val fruit = requireArguments().getSerializable(FRUIT_KEY) as FruitsData
-
 //        fruitList.add(fruit)
 
-        var dd = ListUsers.allFri
-        for (o in dd) {
-            fruitList.add(o)
-            adapter?.notifyDataSetChanged()
-        }
 
         dataModel.message.observe(activity as LifecycleOwner, {
             nameMessage = it
         })
 
-        dataModel.fruit.observe(activity as LifecycleOwner, {
-            fruitList.add(it)
-            adapter?.notifyDataSetChanged()
-        })
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
 // */*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
 
-//
-//        fruitList.add(oldNotes as FruitsData)
-//        adapter?.notifyDataSetChanged()
 
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
         fruitList.clear()
-        fruitList = allfruits
-        var gg = ListUsers.allUsers.userId
-        var id = FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao().getFruit(gg)
+//        fruitList = allfruits
+//
+//        for (y in allfruits){
+//            val fruit = FruitsData()
+//            fruit.Favoritess_id = gg
+//            fruit.description = y.description
+//            fruit.image = y.image
+//            fruit.likeImage = y.likeImage
+//            fruit.nutrition_1 = y.nutrition_1
+//            fruit.per_kg = y.per_kg
+//            fruit.title = y.title
+//            FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao().add_New_Fruits_Favorites(fruit)
+//            Toast.makeText(requireContext(), "фрукт добавлен в базу данных", Toast.LENGTH_SHORT).show()
+//        }
 
-        for (o in FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao()
+        for (r in FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao()
             .getAllFruits()!!) {
-//            for (r in ListUsers.allUsers) {
-                if (gg == o.id) {
-                    fruitList.add(o)
-                    adapter?.notifyDataSetChanged()
-                    Toast.makeText(requireContext(), "фрукт может быть показан", Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(requireContext(), "что то пошло не так", Toast.LENGTH_SHORT).show()
-                }
 
-//            }
+//            for (o in fruitList){
+            if (gg == r.Favoritess_id) {
 
+                list.add(r)
+
+                adapter?.notifyDataSetChanged()
+                Toast.makeText(requireContext(), "фрукт может быть показан", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Toast.makeText(requireContext(), "идет загрузка....", Toast.LENGTH_SHORT).show()
+            }
         }
 
 
-        adapter = FavoritesAdapter(fruitList, this)
+        adapter = FavoritesAdapter(list, this)
         binding.recFavorites?.layoutManager = LinearLayoutManager(requireContext())
 
         binding.recFavorites?.setHasFixedSize(true)
         binding.recFavorites?.adapter = adapter
         adapter?.notifyDataSetChanged()
 
-        // Inflate the layout for this fragment
+
         return binding.root
     }
 
     override fun fonNextClick(position: Int) {
+
+        val detail = list[position]
+
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Шаблон")
         builder.setMessage("Ты хочешь удалить из избранных")
         builder.setPositiveButton("да", { dialogInterface: DialogInterface, i: Int ->
-            fruitList.removeAt(position)
-            for (o in FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao()
+
+            for (r in FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao()
                 .getAllFruits()!!) {
-//            for (r in ListUsers.allUsers) {
-                if (ListUsers.allUsers.userId == o.id) {
-//                    fruitList.add(o)
-                    FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao().delete_Fruits_Favoritesr(o)
+                if (gg == r.Favoritess_id) {
+                    list.remove(r)
+                    FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao()
+                        .delete_Fruits_Favoritesr(detail)
                     Toast.makeText(requireContext(), "фрукт удален", Toast.LENGTH_SHORT).show()
+                    list.clear()
+                    for (r in FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao()
+                        .getAllFruits()!!) {
+//            for (o in fruitList){
+                        if (gg == r.Favoritess_id) {
+                            list.add(r)
+
+                            adapter?.notifyDataSetChanged()
+                            Toast.makeText(requireContext(),
+                                "фрукт может быть показан",
+                                Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+
+
                     adapter?.notifyDataSetChanged()
+                } else {
+                    Toast.makeText(requireContext(), "фрукт пока не удален", Toast.LENGTH_SHORT)
+                        .show()
                 }
+                adapter?.notifyDataSetChanged()
+
             }
 
         })
-        builder.setNegativeButton("нет", { DialogInterface, i: Int -> })
+        builder.setNegativeButton("нет",
+            { DialogInterface, i: Int -> })
         builder.show()
+    }
+
+    override fun fonDetailClick(position: Int) {
+        TODO("Not yet implemented")
     }
 
 

@@ -6,11 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.example.renovated_fruit_shop.DataClass.FruitsData
 import com.example.renovated_fruit_shop.databinding.FragmentDetailBinding
 
 class Detail_Fragment : Fragment() {
 
     lateinit var binding: FragmentDetailBinding
+
+    companion object {
+        var Detailsfruits: ArrayList<FruitsData> = ArrayList()
+    }
 
     val oldNotes by navArgs<Detail_FragmentArgs>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,15 +33,21 @@ class Detail_Fragment : Fragment() {
 
         binding = FragmentDetailBinding.inflate(layoutInflater,container,false)
 
-        binding.cardPhoto.setImageResource(oldNotes.data.image)
+        for (u in Detailsfruits){
 
-        binding.favDescr.setText(oldNotes.data.description)
+            binding.cardPhoto.setImageResource(u.image)
 
-        binding.favTitle.setText(oldNotes.data.title)
+            binding.favDescr.setText(u.description)
 
-        binding.favNutDesc.setText(oldNotes.data.nutrition_1)
+            binding.favTitle.setText(u.title)
 
-        binding.favPrice.setText(oldNotes.data.per_kg)
+            binding.favNutDesc.setText(u.nutrition_1)
+
+            binding.favPrice.setText(u.per_kg)
+
+
+        }
+
 
 
         // Inflate the layout for this fragment

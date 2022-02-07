@@ -10,13 +10,13 @@ import java.util.*
 @Entity(tableName = "fruits_database")
 class FruitsData(
 
-    @PrimaryKey
+
+
+    var title: String = "",
 
     var likeImage: Int = 0,
 
     var image: Int = 0,
-
-    var title: String = "",
 
     var per_kg: String = "",
 
@@ -28,6 +28,13 @@ class FruitsData(
 
     var isClicked: Boolean = false,
 
-    var id: String = "",
+    var Orders_id: String = "",
+
+    var Favoritess_id: String = "",
+
+    @PrimaryKey
+
+    var fruitsId: String = UUID.randomUUID().toString(),
+
 
     ) : Serializable

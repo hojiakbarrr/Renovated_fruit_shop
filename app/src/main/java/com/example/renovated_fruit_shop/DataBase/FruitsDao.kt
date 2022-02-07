@@ -34,8 +34,13 @@ interface FruitsDao {
     @Query("select * from fruits_database")
     fun getAllFruits(): MutableList<FruitsData>?
 
-    @Query("select * from fruits_database where  id ==:ceId")
-    fun getFruit(ceId: String): FruitsData
+
+    @Query("select * from fruits_database where  Favoritess_id ==:ceId")
+    fun getFruitFavorites(ceId: String): FruitsData
+
+
+    @Query("select * from fruits_database where  Orders_id ==:ceId")
+    fun getFruitOrders(ceId: String): FruitsData
 ////*-/*-/*-/*-/*-/*-/*-/*-/*-/*-/*/-/*-/*-/*-/*-/*-/*-/*-/*-*/*-*//*/*//*-/*-/*-/*-/*-/*-/*-/*-/*-/*-/*/-/*-/*-/*-/*-/*-/*-/*-/*-*/*-*//*/*/
 /////*-/*-/*-/*-/*-/*-/*-/*-/*-/*-/*/-/*-/*-/*-/*-/*-/*-/*-/*-*/*-*//*/*//*-/*-/*-/*-/*-/*-/*-/*-/*-/*-/*/-/*-/*-/*-/*-/*-/*-/*-/*-*/*-*//*/*/
 

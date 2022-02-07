@@ -9,12 +9,14 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.renovated_fruit_shop.AdapterS.MainAdapter
 import com.example.renovated_fruit_shop.DataBase.FrutsDataBase
 import com.example.renovated_fruit_shop.DataBase.UserDataBase
 import com.example.renovated_fruit_shop.DataClass.FruitsData
+import com.example.renovated_fruit_shop.Fragments.ui.Detail_Fragment
 import com.example.renovated_fruit_shop.Fragments.ui.Detail_FragmentArgs
 import com.example.renovated_fruit_shop.Fragments.ui.FavoritesFragment
 import com.example.renovated_fruit_shop.R
@@ -104,9 +106,9 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
         })
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*--------------> SEARCH <------------/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
         fruitList.clear()
-        fruitList.add(FruitsData(unlike,
+        fruitList.add(FruitsData("Apple",
+            unlike,
             apple,
-            "Apple",
             "56",
             "• Calories: 104\n" +
                     "• Carbs: 28 grams\n" +
@@ -117,10 +119,10 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
             "Apples have been shown to reduce your body’s cholesterol and inflammation levels, " +
                     "which are both key factors for heart health "))
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
-        fruitList.add(FruitsData(unlike,
+        fruitList.add(FruitsData("Apricots",
+            unlike,
             apricots,
-            "Apricots",
-            "47,12",
+            "46",
             "• Calories: 34\n" +
                     "• Carbs: 8 grams\n" +
                     "• Fiber: 1,5 grams\n" +
@@ -132,9 +134,10 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
                     "e carotenoids and vitamin E support overall vision. Apricot nutrients " +
                     "also help to reduce the risk of macular degeneration and cataracts."))
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
-        fruitList.add(FruitsData(unlike,
+
+        fruitList.add(FruitsData("Grapes",
+            unlike,
             grapes,
-            "Grapes",
             "62,31",
             "• Calories: 104\n" +
                     "• Carbs: 27 grams\n" +
@@ -144,23 +147,25 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
                     "• Vitamin K: 18% of the DV",
             "Grapes are jam-packed with nutrients like vitamin C, vitamin K and powerful antioxidants that may improve your health in numerous ways."))
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
-        fruitList.add(FruitsData(unlike,
+
+        fruitList.add(FruitsData("Melon",
+            unlike,
             melon,
-            "Melon",
-            "108",
-            "• Calories: 64\n" +
-                    "• Carbs: 16 grams\n" +
-                    "• Fiber: 1.4 grams\n" +
-                    "• Vitamin C: 53% of the reference daily intake (RDI)\n" +
-                    "• Vitamin B6: 8% of the RDI\n" +
+            "63",
+            "• Calories: 64\\n\" +\n" +
+                    "• Carbs: 16 grams +\n" +
+                    "• Fiber: 1.4 grams +\n" +
+                    "• Vitamin C: 53% of the reference daily intake (RDI)+\n" +
+                    "• Vitamin B6: 8% of the RDI+\n" +
                     "• Vitamin K: 6% of the RDI",
-            "They are a good source of dietary fiber, vitamin K, potassium, and copper, and a" +
-                    " very good source of vitamin C and vitamin B6. Listed below are a few of the most common summer melons," +
-                    " along with nutrition facts for each!"))
+            "They are a good source of dietary fiber, vitamin K, potassium, and copper, and a very good source " +
+                    "of vitamin C and vitamin B6." +
+                    "Listed below are a few of the most common summer melons,along with nutrition facts for each!"))
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
-        fruitList.add(FruitsData(unlike,
+
+        fruitList.add(FruitsData("MultiFruit",
+            unlike,
             multiFruit,
-            "MultiFruit",
             "85",
             "• Vitamin B1: t0.083 mg 7.5% RDA\n" +
                     "• Vitamin B3: t1.2 mg 7.5% RDA\n" +
@@ -172,9 +177,10 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
                     " very good source of vitamin C and vitamin B6. Listed below are a few of the most common summer melons," +
                     " along with nutrition facts for each!"))
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
-        fruitList.add(FruitsData(unlike,
+
+        fruitList.add(FruitsData("Nectarines",
+            unlike,
             nectarines,
-            "Nectarines",
             "68",
             "• Calories: 63\n" +
                     "• Fat: 0.5 grams\n" +
@@ -185,9 +191,10 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
             "In fact, a recent study in 800 adults with COVID-19 showed that taking 16, 200-mg doses of vitamin C decreased both ventilator dependence and death rates." +
                     " Other research also suggests reduced hospital stays and lower symptom severity "))
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
-        fruitList.add(FruitsData(unlike,
+
+        fruitList.add(FruitsData("Oranges",
+            unlike,
             oranges,
-            "Oranges",
             "57,32",
             "• Calories: 66\n" +
                     "• Fat: 0.2 grams\n" +
@@ -198,9 +205,10 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
             "Helps your body make collagen, a protein that heals wounds and gives you smoother skin\n" +
                     "Makes it easier to absorb iron to fight anemia"))
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
-        fruitList.add(FruitsData(unlike,
+
+        fruitList.add(FruitsData("Peaches",
+            unlike,
             peaches,
-            "Peaches",
             "67,87",
             "• Calories: 58\n" +
                     "• Fat: less than gram\n" +
@@ -209,10 +217,12 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
                     "• Fiber: 2 grams\n" +
                     "• Vitamin C: 17% of the Daily Value (DV)",
             "Peaches are a moderate source of beta carotene, a red-orange pigment found in fruits,” Smith says. The body turns beta carotene into vitamin A, an essential vitamin that’s important for healthy vision"))
+
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
-        fruitList.add(FruitsData(unlike,
+
+        fruitList.add(FruitsData("Pumpkin",
+            unlike,
             pumpkin,
-            "Pumpkin",
             "43,6",
             "• Calories: 58\n" +
                     "• Fat: less than gram\n" +
@@ -221,12 +231,12 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
                     "• Fiber: 2 grams\n" +
                     "• Vitamin C: 17% of the Daily Value (DV)",
             "Your body changes this antioxidant to vitamin A. You need vitamin A to see, ward off germs, and for your reproductive system to work the way it should. " +
-                    "It also helps your heart, lungs, kidneys, and other organs stay healthy."
-        ))
+                    "It also helps your heart, lungs, kidneys, and other organs stay healthy."))
         //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
-        fruitList.add(FruitsData(unlike,
+
+        fruitList.add(FruitsData("Strawberry",
+            unlike,
             strawberry,
-            "Strawberry",
             "87,9",
             "• Calories: 53\n" +
                     "• protein: 1.11 g\n" +
@@ -235,12 +245,12 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
                     "• magnesium: 22 mg\n" +
                     "• folate: 40 micrograms",
             "The heart-shaped silhouette of the strawberry is the first clue that this fruit is good for you. These potent little packages protect your heart, " +
-                    "increase HDL (good) cholesterol, lower your blood pressure, and guard against cancer."
-        ))
+                    "increase HDL (good) cholesterol, lower your blood pressure, and guard against cancer."))
         //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
-        fruitList.add(FruitsData(unlike,
+
+        fruitList.add(FruitsData("Tropicano",
+            unlike,
             tropicano,
-            "Tropicano",
             "47",
             "• Vitamin C 276mg\n" +
                     "• Calcium 20mg\n" +
@@ -248,12 +258,12 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
                     "• Vitamin B6",
             " Vitamin C might be the most well-known of the bunch, but there are plenty of other minerals and vitamins in orange juice. " +
                     "Below is a list of some common nutrients," +
-                    " minerals, and vitamins in orange juice, as well as how each functions in your body.  "
-        ))
+                    " minerals, and vitamins in orange juice, as well as how each functions in your body."))
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
-        fruitList.add(FruitsData(unlike,
+
+        fruitList.add(FruitsData("Water mealons",
+            unlike,
             water_mealons,
-            "Water mealons",
             "76",
             "• 12 grams of carbohydrates\n" +
                     "• 12 milligrams of vitamin C\n" +
@@ -261,8 +271,7 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
                     "• 0.1 milligrams of vitamin B6",
             "Body temperature regulation, normal organ function, nutrient delivery to cells, and alertness are only some of the bodily processes that rely on adequate hydration (2Trusted Source)." +
                     "Eating foods with a high water content may help give your body the water it needs to function properly." +
-                    "Watermelon comprises 92% water, making it a great choice for daily water intake (3Trusted Source)."
-        ))
+                    "Watermelon comprises 92% water, making it a great choice for daily water intake (3Trusted Source)."))
 
         setCategoryRecycle(searchList)
         searchList.addAll(fruitList)
@@ -290,42 +299,37 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
     }
 
     override fun fonItemClick(position: Int) {
+        Detail_Fragment.Detailsfruits.add(searchList[position])
 
-
+        val yoursFragment: Fragment = Detail_Fragment()
+        val trans = requireFragmentManager().beginTransaction()
+        trans.replace(R.id.nav_host_fragment_content_main, yoursFragment)
+            .addToBackStack(R.id.nav_home.toString())
+        trans.commit()
     }
 
     override fun fonLikeClick(position: Int, data: FruitsData) {
         val detail = searchList[position]
-//        for (i in searchList) {
-//            ListUsers.allFri.add(i)
-//        FavoritesFragment.allfruits.add(searchList[position])
-        for (o in UserDataBase.getDatabaseInstance(requireContext()).allUsersDao().getAllUser()!!) {
-//            for (u in ListUsers.allUsers) {
-//                ListUsers.allUsers.userId
-            for (i in searchList.indices) {
-                if (i == position){
-                    if (o.userId == ListUsers.allUsers.userId) {
-                        detail.id = o.userId
-                        FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao()
-                            .add_New_Fruits_Favorites(searchList[position])
-                        Toast.makeText(requireContext(),
-                            "фрукт добавлен в избранные",
-                            Toast.LENGTH_SHORT).show()
 
+
+        for (o in UserDataBase.getDatabaseInstance(requireContext()).allUsersDao()
+            .getAllUser()!!) {
+            if (o.userId == ListUsers.allUsers.userId) {
+                for (i in searchList.indices) {
+                    if (i == position) {
+                        if (o.userId == ListUsers.allUsers.userId) {
+                            detail.Favoritess_id = o.userId
+                            FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao()
+                                .add_New_Fruits_Favorites(detail)
+                            Toast.makeText(requireContext(),
+                                "фрукт добавляется в избранные",
+                                Toast.LENGTH_SHORT).show()
+                            searchList[position].likeImage = like
+                        }
                     }
                 }
-
             }
-
-//            }
         }
-
-//            val bundle = Bundle()
-//            val fragment = FavoritesFragment()
-//            bundle.putSerializable(FRUIT_KEY, i)
-//            fragment.arguments = bundle
-//            findNavController().navigate(R.id.nav_Favourites, bundle)
-
     }
 
 }

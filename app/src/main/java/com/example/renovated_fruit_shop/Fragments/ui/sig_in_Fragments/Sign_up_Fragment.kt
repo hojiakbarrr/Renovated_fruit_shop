@@ -64,11 +64,8 @@ class Sign_up_Fragment : Fragment() {
 
             UserDataBase.getDatabaseInstance(requireContext()).allUsersDao().add_New_User(usersF)
 
-            var frukt = FruitsData()
-            frukt.id = usersF.userId
-
-//            FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao().add_New_Fruits_Orders(frukt)
-//            FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao().add_New_Fruits_Favorites(frukt)
+//            var frukt = FruitsData()
+//            frukt.Favoritess_id = usersF.userId
 
             Toast.makeText(requireContext(), "аккаунт создан", Toast.LENGTH_SHORT).show()
 
@@ -89,7 +86,6 @@ class Sign_up_Fragment : Fragment() {
             trans.commit()
         }
 
-        // Inflate the layout for this fragment
         return binding.root
     }
 

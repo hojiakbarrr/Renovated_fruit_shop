@@ -38,14 +38,15 @@ class MainAdapter (val list: MutableList<FruitsData>, val clickListener: IconCli
             holder.like.setImageResource(list[position].likeImage)
 
         }
+//        holder.itemView.setOnClickListener {
+//            val data = list[position]
+//            val action = HomeFragmentDirections.actionNavHomeToDetailFragment(data)
+//            Navigation.findNavController(it).navigate(action)
+//
+//        }
         holder.itemView.setOnClickListener {
-            val data = list[position]
-
-            val action = HomeFragmentDirections.actionNavHomeToDetailFragment(data)
-            Navigation.findNavController(it).navigate(action)
-
+            clickListener.fonItemClick(position)
         }
-
 
         holder.like.setOnClickListener {
             val data = list[position]

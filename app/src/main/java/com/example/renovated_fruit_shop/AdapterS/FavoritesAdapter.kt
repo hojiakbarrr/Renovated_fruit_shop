@@ -42,9 +42,7 @@ class FavoritesAdapter(val list: MutableList<FruitsData>, val clickListener: Nex
 
 
             holder.next.setOnClickListener {
-
-                val data = list[position]
-
+                clickListener.fonDetailClick(position)
 //                val action =  FavoritesFragmentDirections.actionNavFavouritesToDetailFragment(data)
 //                Navigation.findNavController(it).navigate(action)
             }
@@ -61,6 +59,9 @@ class FavoritesAdapter(val list: MutableList<FruitsData>, val clickListener: Nex
 
     interface NextClickListener {
         fun fonNextClick(position: Int)
+        fun fonDetailClick(position: Int)
+
+
     }
 
 }
