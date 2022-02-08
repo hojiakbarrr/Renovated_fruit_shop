@@ -65,17 +65,14 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
 
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
 ////*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
-// */*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
 
         fruitList.clear()
 
-        for (r in FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao()
-            .getAllFruits()!!) {
+        for (r in FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao().getAllFruits()!!) {
 
             if (gg == r.Favoritess_id) {
 
                 list.add(r)
-
                 adapter?.notifyDataSetChanged()
                 Toast.makeText(requireContext(), "фрукт может быть показан", Toast.LENGTH_SHORT)
                     .show()
@@ -85,7 +82,6 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
         }
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
 ////*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
-//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
 
         adapter = FavoritesAdapter(list, this)
         binding.recFavorites?.layoutManager = LinearLayoutManager(requireContext())
@@ -147,8 +143,8 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
 
         val yoursFragment: Fragment = Detail_Fragment()
         val trans = requireFragmentManager().beginTransaction()
-        trans.replace(R.id.nav_host_fragment_content_main, yoursFragment)
-            .addToBackStack(R.id.nav_Favourites.toString())
+        trans.replace(R.id.nav_host_fragment_content_main, yoursFragment).setReorderingAllowed(true)
+            .addToBackStack(R.id.nav_home.toString())
         trans.commit()
     }
 

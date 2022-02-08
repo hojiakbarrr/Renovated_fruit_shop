@@ -39,8 +39,6 @@ class FavoritesAdapter(val list: MutableList<FruitsData>, val clickListener: Nex
             holder.time.text = curreeentDate
             holder.next.setImageResource(rr)
 
-
-
             holder.next.setOnClickListener {
                 clickListener.fonDetailClick(position)
 //                val action =  FavoritesFragmentDirections.actionNavFavouritesToDetailFragment(data)

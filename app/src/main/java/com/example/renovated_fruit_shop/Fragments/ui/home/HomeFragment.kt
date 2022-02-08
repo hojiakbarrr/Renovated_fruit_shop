@@ -296,7 +296,7 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
 
         val yoursFragment: Fragment = Detail_Fragment()
         val trans = requireFragmentManager().beginTransaction()
-        trans.replace(R.id.nav_host_fragment_content_main, yoursFragment)
+        trans.replace(R.id.nav_host_fragment_content_main, yoursFragment).setReorderingAllowed(true)
             .addToBackStack(R.id.nav_home.toString())
         trans.commit()
     }
