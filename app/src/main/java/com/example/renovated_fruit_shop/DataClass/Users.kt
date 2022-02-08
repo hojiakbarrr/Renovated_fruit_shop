@@ -20,23 +20,11 @@ data class Users(
 
     var name: String = "",
 
-    var favoritesLis: String = "",
-
-    var ordersList: String = "",
-
     var photo: Int? = 0,
 
     var likeImage: Int = 0,
 
     var image: Int = 0,
-
-    var title: String = "",
-
-    var per_kg: String = "",
-
-    var nutrition_1: String = "",
-
-    var description: String = "",
 
     var currentDate: String = "",
 

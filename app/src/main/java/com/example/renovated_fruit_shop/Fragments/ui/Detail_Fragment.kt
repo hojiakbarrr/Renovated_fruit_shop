@@ -17,7 +17,7 @@ class Detail_Fragment : Fragment() {
         var Detailsfruits: ArrayList<FruitsData> = ArrayList()
     }
 
-    val oldNotes by navArgs<Detail_FragmentArgs>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -48,6 +48,9 @@ class Detail_Fragment : Fragment() {
 
         }
 
+        binding.buyDetail.setOnClickListener {
+
+        }
 
 
         // Inflate the layout for this fragment

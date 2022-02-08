@@ -18,6 +18,7 @@ import com.example.renovated_fruit_shop.DataBase.FrutsDataBase
 import com.example.renovated_fruit_shop.DataClass.FruitsData
 import com.example.renovated_fruit_shop.DataClass.Users
 import com.example.renovated_fruit_shop.Fragments.ui.home.HomeFragment.Companion.FRUIT_KEY
+import com.example.renovated_fruit_shop.R
 import com.example.renovated_fruit_shop.Static_class.DataModel
 import com.example.renovated_fruit_shop.Static_class.ListUsers
 import com.example.renovated_fruit_shop.databinding.FragmentFavoritesBinding
@@ -58,40 +59,19 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
         allfruits.clear()
 
 
-//        val fruit = requireArguments().getSerializable(FRUIT_KEY) as FruitsData
-//        fruitList.add(fruit)
-
-
         dataModel.message.observe(activity as LifecycleOwner, {
             nameMessage = it
         })
 
-//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
+//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
+////*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
 // */*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
 
-
-//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
-//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
         fruitList.clear()
-//        fruitList = allfruits
-//
-//        for (y in allfruits){
-//            val fruit = FruitsData()
-//            fruit.Favoritess_id = gg
-//            fruit.description = y.description
-//            fruit.image = y.image
-//            fruit.likeImage = y.likeImage
-//            fruit.nutrition_1 = y.nutrition_1
-//            fruit.per_kg = y.per_kg
-//            fruit.title = y.title
-//            FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao().add_New_Fruits_Favorites(fruit)
-//            Toast.makeText(requireContext(), "фрукт добавлен в базу данных", Toast.LENGTH_SHORT).show()
-//        }
 
         for (r in FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao()
             .getAllFruits()!!) {
 
-//            for (o in fruitList){
             if (gg == r.Favoritess_id) {
 
                 list.add(r)
@@ -103,7 +83,9 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
                 Toast.makeText(requireContext(), "идет загрузка....", Toast.LENGTH_SHORT).show()
             }
         }
-
+//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
+////*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
+//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
 
         adapter = FavoritesAdapter(list, this)
         binding.recFavorites?.layoutManager = LinearLayoutManager(requireContext())
@@ -115,7 +97,8 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
 
         return binding.root
     }
-
+    //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
+//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
     override fun fonNextClick(position: Int) {
 
         val detail = list[position]
@@ -135,15 +118,10 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
                     list.clear()
                     for (r in FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao()
                         .getAllFruits()!!) {
-//            for (o in fruitList){
                         if (gg == r.Favoritess_id) {
                             list.add(r)
 
                             adapter?.notifyDataSetChanged()
-                            Toast.makeText(requireContext(),
-                                "фрукт может быть показан",
-                                Toast.LENGTH_SHORT)
-                                .show()
                         }
                     }
 
@@ -162,9 +140,16 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
             { DialogInterface, i: Int -> })
         builder.show()
     }
-
+    //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
+//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
     override fun fonDetailClick(position: Int) {
-        TODO("Not yet implemented")
+        Detail_Fragment.Detailsfruits.add(list[position])
+
+        val yoursFragment: Fragment = Detail_Fragment()
+        val trans = requireFragmentManager().beginTransaction()
+        trans.replace(R.id.nav_host_fragment_content_main, yoursFragment)
+            .addToBackStack(R.id.nav_Favourites.toString())
+        trans.commit()
     }
 
 

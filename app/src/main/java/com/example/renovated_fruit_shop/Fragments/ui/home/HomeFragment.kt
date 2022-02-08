@@ -25,14 +25,11 @@ import com.example.renovated_fruit_shop.Static_class.ListUsers
 import com.example.renovated_fruit_shop.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment(), MainAdapter.IconClickListener {
-    //    val oldNotes by navArgs<DetailFragmentArgs>()
+
     private var _binding: FragmentHomeBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+   private val binding get() = _binding!!
 
-    /////*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
     val oldNotes by navArgs<Detail_FragmentArgs>()
 
     var fruitList: MutableList<FruitsData> = ArrayList()
@@ -73,10 +70,6 @@ class HomeFragment : Fragment(), MainAdapter.IconClickListener {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        val textView: TextView = binding.home
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
 
         binding.searchField.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 

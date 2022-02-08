@@ -38,12 +38,7 @@ class MainAdapter (val list: MutableList<FruitsData>, val clickListener: IconCli
             holder.like.setImageResource(list[position].likeImage)
 
         }
-//        holder.itemView.setOnClickListener {
-//            val data = list[position]
-//            val action = HomeFragmentDirections.actionNavHomeToDetailFragment(data)
-//            Navigation.findNavController(it).navigate(action)
-//
-//        }
+
         holder.itemView.setOnClickListener {
             clickListener.fonItemClick(position)
         }
@@ -52,14 +47,7 @@ class MainAdapter (val list: MutableList<FruitsData>, val clickListener: IconCli
             val data = list[position]
             if(!rr){
                 holder.like.setImageResource(R.drawable.favorite)
-//                val action = HomeFragmentDirections.actionNavHomeToNavFavourites2(data)
                 clickListener.fonLikeClick(position,data)
-
-//                val bundle = Bundle()
-//                val fragment = FavoritesFragment()
-//                bundle.putSerializable(HomeFragment.FRUIT_KEY, data)
-//                fragment.arguments = bundle
-
             }
         }
     }
