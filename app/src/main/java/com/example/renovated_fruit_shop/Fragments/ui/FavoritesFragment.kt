@@ -139,12 +139,12 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
     //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
     override fun fonDetailClick(position: Int) {
-        Detail_Fragment.Detailsfruits.add(list[position])
+        Detail_2_Fragment.Detailsfruitsss.add(list[position])
 
-        val yoursFragment: Fragment = Detail_Fragment()
+        val yoursFragment: Fragment = Detail_2_Fragment()
         val trans = requireFragmentManager().beginTransaction()
         trans.replace(R.id.nav_host_fragment_content_main, yoursFragment).setReorderingAllowed(true)
-            .addToBackStack(R.id.nav_home.toString())
+            .addToBackStack(R.id.nav_Favourites.toString())
         trans.commit()
     }
 
