@@ -7,12 +7,12 @@ import com.example.renovated_fruit_shop.DataClass.FruitsData
 
 open class DataModel : ViewModel(){
 
-    val message: MutableLiveData<String> by lazy {
+    val name: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
     }
 
-    val fruit: MutableLiveData<FruitsData> by lazy {
-        MutableLiveData<FruitsData>()
+    val mail: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
     }
 
 }

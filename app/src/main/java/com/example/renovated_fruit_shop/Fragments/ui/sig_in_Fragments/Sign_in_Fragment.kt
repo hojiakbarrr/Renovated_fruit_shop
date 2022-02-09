@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
 import com.example.renovated_fruit_shop.DataBase.UserDataBase
-import com.example.renovated_fruit_shop.Fragments.ui.Slash_Fragments.splash_1_Fragment
+import com.example.renovated_fruit_shop.Fragments.ui.Detail_2_Fragment
 import com.example.renovated_fruit_shop.Static_class.DataModel
 import com.example.renovated_fruit_shop.Fragments.ui.home.HomeFragment
 import com.example.renovated_fruit_shop.R
@@ -64,14 +64,16 @@ class Sign_in_Fragment : Fragment() {
             for (o in UserDataBase.getDatabaseInstance(requireContext()).allUsersDao().getAllUser()!!) {
                 if (o.login == logIn && o.password == parol) {
                     log = true
-                    dataModel.message.value = o.name
+                    dataModel.name.value = o.name
+                    dataModel.mail.value = o.mail
                     ListUsers.allUsers = o
                     Toast.makeText(requireContext(), "Вы в главном меню", Toast.LENGTH_SHORT).show()
 //                    var intent: Intent? = Intent(context, Drawer_activity::class.java)
                     val yoursFragment: Fragment =  HomeFragment()
                     val trans = requireFragmentManager().beginTransaction()
-                    trans.replace(R.id.nav_host_fragment_content_main, yoursFragment).addToBackStack(null)
+                    trans.replace(R.id.nav_host_fragment_content_main, yoursFragment).setReorderingAllowed(true).addToBackStack(R.id.sign_in_Fragment.toString())
                     trans.commit()
+
 //                    startActivity(intent)
                     par = true
                 } else if (!log) {

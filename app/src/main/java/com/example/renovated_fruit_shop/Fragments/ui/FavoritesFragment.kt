@@ -11,13 +11,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.renovated_fruit_shop.AdapterS.FavoritesAdapter
 import com.example.renovated_fruit_shop.DataBase.FrutsDataBase
 import com.example.renovated_fruit_shop.DataClass.FruitsData
-import com.example.renovated_fruit_shop.DataClass.Users
-import com.example.renovated_fruit_shop.Fragments.ui.home.HomeFragment.Companion.FRUIT_KEY
 import com.example.renovated_fruit_shop.R
 import com.example.renovated_fruit_shop.Static_class.DataModel
 import com.example.renovated_fruit_shop.Static_class.ListUsers
@@ -59,7 +56,7 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
         allfruits.clear()
 
 
-        dataModel.message.observe(activity as LifecycleOwner, {
+        dataModel.name.observe(activity as LifecycleOwner, {
             nameMessage = it
         })
 

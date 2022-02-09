@@ -35,6 +35,7 @@
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline7"
             android:layout_width="wrap_content"
+            android:maxLines="1"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.90" />
@@ -53,6 +54,7 @@
             app:errorEnabled="true"
             app:errorIconDrawable="@drawable/error"
             app:helperText="Required*"
+
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -61,6 +63,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_password"
+                android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:maxLength="10" />
