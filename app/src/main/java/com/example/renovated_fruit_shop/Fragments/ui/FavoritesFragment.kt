@@ -1,5 +1,6 @@
 package com.example.renovated_fruit_shop.Fragments.ui
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.icu.text.SimpleDateFormat
@@ -92,6 +93,7 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
     }
     //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
 //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
+    @SuppressLint("NotifyDataSetChanged")
     override fun fonNextClick(position: Int) {
 
         val detail = list[position]
@@ -99,7 +101,7 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Шаблон")
         builder.setMessage("Ты хочешь удалить из избранных")
-        builder.setPositiveButton("да", { dialogInterface: DialogInterface, i: Int ->
+        builder.setPositiveButton("да") { dialogInterface: DialogInterface, i: Int ->
 
             for (r in FrutsDataBase.getDatabaseInstance(requireContext()).allFriutssDao()
                 .getAllFruits()!!) {
@@ -128,9 +130,9 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.NextClickListener {
 
             }
 
-        })
-        builder.setNegativeButton("нет",
-            { DialogInterface, i: Int -> })
+        }
+        builder.setNegativeButton("нет"
+        ) { DialogInterface, i: Int -> }
         builder.show()
     }
     //*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*//*/*
